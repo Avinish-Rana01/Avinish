@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000/api/chat' : '');
+const API_URL = 'https://portfolio-chatbot-ai.onrender.com/api/chat/ask';
 
 export async function sendChatMessage(message) {
   try {
