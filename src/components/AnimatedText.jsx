@@ -1,14 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-interface AnimatedTextProps {
-  text: string;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style }) => {
-  const ref = useRef<HTMLParagraphElement>(null);
+const AnimatedText = ({ text, className = '', style }) => {
+  const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -39,14 +33,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style
   );
 };
 
-interface WordSpanProps {
-  word: string;
-  progress: ReturnType<typeof useScroll>['scrollYProgress'];
-  start: number;
-  end: number;
-}
-
-const WordSpan: React.FC<WordSpanProps> = ({ word, progress, start, end }) => {
+const WordSpan = ({ word, progress, start, end }) => {
   const opacity = useTransform(progress, [start, end], [0.2, 1]);
 
   return (

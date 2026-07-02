@@ -3,7 +3,7 @@ import FadeIn from '../components/FadeIn';
 import ContactButton from '../components/ContactButton';
 import Magnet from '../components/Magnet';
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
   return (
     <section
       className="h-screen flex flex-col relative"
@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
       {/* Navbar */}
       <FadeIn delay={0} y={-20} as="nav">
         <nav className="flex justify-between items-center px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-8">
-          {['About', 'Skills', 'Projects', 'Contact'].map((link) => {
+          {['About', 'Skills', 'Projects', 'Resume', 'Contact'].map((link) => {
             const id = link.toLowerCase();
             return (
               <a

@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface LiveProjectButtonProps {
-  id?: string;
-  href?: string;
-}
-
-const LiveProjectButton: React.FC<LiveProjectButtonProps> = ({ id = 'live-project-btn', href = '#' }) => {
+const LiveProjectButton = ({ id = 'live-project-btn', href = '#' }) => {
   return (
     <a
       id={id}

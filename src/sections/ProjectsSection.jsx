@@ -36,15 +36,8 @@ const PROJECTS = [
 
 const TOTAL_CARDS = PROJECTS.length;
 
-interface ProjectCardProps {
-  project: (typeof PROJECTS)[0];
-  index: number;
-  totalCards: number;
-  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
-}
-
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards, scrollContainerRef }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+const ProjectCard = ({ project, index, totalCards, scrollContainerRef }) => {
+  const cardRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: scrollContainerRef,
@@ -140,8 +133,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards, s
   );
 };
 
-const ProjectsSection: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const ProjectsSection = () => {
+  const containerRef = useRef(null);
 
   return (
     <section

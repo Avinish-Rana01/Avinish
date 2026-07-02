@@ -3,6 +3,10 @@ import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
 import ProjectsSection from './sections/ProjectsSection';
+import ResumeSection from './sections/ResumeSection';
+import AmbientPlayer from './components/AmbientPlayer';
+import DigitalDust from './components/DigitalDust';
+import CameraShutter from './components/CameraShutter';
 
 function App() {
   return (
@@ -19,8 +23,13 @@ function App() {
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
+      <ResumeSection />
+      <AmbientPlayer />
+      <DigitalDust />
+      <CameraShutter />
     </div>
   );
 }
 
 export default App;
+

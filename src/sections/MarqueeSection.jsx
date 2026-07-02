@@ -27,9 +27,9 @@ const ROW2_BASE = [
 const ROW1 = [...ROW1_BASE, ...ROW1_BASE, ...ROW1_BASE];
 const ROW2 = [...ROW2_BASE, ...ROW2_BASE, ...ROW2_BASE];
 
-const LazyVideoTile: React.FC<{ src: string }> = ({ src }) => {
+const LazyVideoTile = ({ src }) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
 
   // Cloudinary optimizations:
   // - Video: f_auto (auto format like webm/mp4), q_auto (auto quality), w_420 (resize to tile width)
@@ -83,8 +83,8 @@ const LazyVideoTile: React.FC<{ src: string }> = ({ src }) => {
   );
 };
 
-const MarqueeSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+const MarqueeSection = () => {
+  const sectionRef = useRef(null);
   const [offset, setOffset] = useState(200);
 
   useEffect(() => {

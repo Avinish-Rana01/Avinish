@@ -34,7 +34,7 @@ const SERVICES = [
   },
 ];
 
-const ServicesSection: React.FC = () => {
+const ServicesSection = () => {
   return (
     <section
       className="rounded-t-[30px] sm:rounded-t-[50px] md:rounded-t-[60px] px-4 sm:px-8 md:px-10 py-16 sm:py-24 md:py-32"

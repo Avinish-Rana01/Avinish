@@ -1,0 +1,28 @@
+/* Camera Shutter Sparkle overlay styling and keyframes */
+
+.camera-shutter-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999999;
+  display: block;
+  transform: translate(-50%, -50%);
+  animation: shutter-sparkle 220ms ease-out forwards;
+}
+
+@keyframes shutter-sparkle {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8; /* pure white opacity 60-80% */
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1.0) rotate(15deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.0) rotate(35deg);
+    opacity: 0;
+  }
+}

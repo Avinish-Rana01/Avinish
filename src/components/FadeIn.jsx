@@ -1,17 +1,7 @@
 import React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-interface FadeInProps {
-  children: React.ReactNode;
-  delay?: number;
-  duration?: number;
-  x?: number;
-  y?: number;
-  className?: string;
-  as?: keyof React.JSX.IntrinsicElements;
-}
-
-const FadeIn: React.FC<FadeInProps> = ({
+const FadeIn = ({
   children,
   delay = 0,
   duration = 0.7,
@@ -20,7 +10,7 @@ const FadeIn: React.FC<FadeInProps> = ({
   className = '',
   as = 'div',
 }) => {
-  const variants: Variants = {
+  const variants = {
     hidden: { opacity: 0, x, y },
     visible: {
       opacity: 1,
@@ -34,7 +24,7 @@ const FadeIn: React.FC<FadeInProps> = ({
     },
   };
 
-  const MotionComponent = motion[as as keyof typeof motion] as React.ElementType;
+  const MotionComponent = motion[as];
 
   return (
     <MotionComponent

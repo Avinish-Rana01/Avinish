@@ -17,7 +17,7 @@ const CERTIFICATES = [
 
 /* ---- Inline SVG decorative elements (frontend/code themed) ---- */
 
-const CodeBracketDecor: React.FC<{ flip?: boolean }> = ({ flip = false }) => (
+const CodeBracketDecor = ({ flip = false }) => (
   <svg
     width="140"
     height="140"
@@ -34,7 +34,7 @@ const CodeBracketDecor: React.FC<{ flip?: boolean }> = ({ flip = false }) => (
   </svg>
 );
 
-const ReactLogoDecor: React.FC = () => (
+const ReactLogoDecor = () => (
   <svg
     width="120"
     height="120"
@@ -55,7 +55,7 @@ const ReactLogoDecor: React.FC = () => (
   </svg>
 );
 
-const TerminalDecor: React.FC = () => (
+const TerminalDecor = () => (
   <svg
     width="160"
     height="100"
@@ -76,7 +76,7 @@ const TerminalDecor: React.FC = () => (
   </svg>
 );
 
-const ComponentDecor: React.FC = () => (
+const ComponentDecor = () => (
   <svg
     width="140"
     height="130"
@@ -98,7 +98,7 @@ const ComponentDecor: React.FC = () => (
   </svg>
 );
 
-const AboutSection: React.FC = () => {
+const AboutSection = () => {
   return (
     <section
       className="relative flex items-center justify-center min-h-screen px-5 sm:px-8 md:px-10 py-20 overflow-hidden"
@@ -176,7 +176,7 @@ const AboutSection: React.FC = () => {
             style={{
               color: '#D7E2EA',
               fontSize: 'clamp(1rem, 2vw, 1.35rem)',
-            } as React.CSSProperties}
+            }}
           />
 
           {/* Certificates */}

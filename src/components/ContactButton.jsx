@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface ContactButtonProps {
-  id?: string;
-}
-
-const ContactButton: React.FC<ContactButtonProps> = ({ id = 'contact-btn' }) => {
+const ContactButton = ({ id = 'contact-btn' }) => {
   return (
     <a
       id={id}

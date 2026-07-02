@@ -1,15 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 
-interface MagnetProps {
-  children: React.ReactNode;
-  padding?: number;
-  strength?: number;
-  activeTransition?: string;
-  inactiveTransition?: string;
-  className?: string;
-}
-
-const Magnet: React.FC<MagnetProps> = ({
+const Magnet = ({
   children,
   padding = 150,
   strength = 3,
@@ -17,12 +8,12 @@ const Magnet: React.FC<MagnetProps> = ({
   inactiveTransition = 'transform 0.6s ease-in-out',
   className = '',
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const rectRef = useRef<DOMRect | null>(null);
+  const ref = useRef(null);
+  const rectRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
+  const handleMouseMove = useCallback((e) => {
     const el = ref.current;
     if (!el) return;
 
