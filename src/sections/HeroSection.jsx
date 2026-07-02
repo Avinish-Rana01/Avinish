@@ -73,7 +73,7 @@ const HeroSection = () => {
       </FadeIn>
 
       {/* Bottom bar */}
-      <div className="mt-auto flex justify-between items-end px-4 sm:px-6 md:px-10 pb-16 sm:pb-8 md:pb-10 relative z-20">
+      <div className="mt-auto flex flex-col sm:flex-row justify-start items-start sm:items-end gap-6 sm:gap-12 px-4 sm:px-6 md:px-10 pb-20 sm:pb-8 md:pb-10 relative z-20 pointer-events-auto">
         {/* Left: tagline */}
         <FadeIn delay={0.35} y={20}>
           <p
@@ -87,7 +87,7 @@ const HeroSection = () => {
           </p>
         </FadeIn>
 
-        {/* Right: Contact Button */}
+        {/* Contact Button */}
         <FadeIn delay={0.5} y={20}>
           <ContactButton id="hero-contact-btn" />
         </FadeIn>
