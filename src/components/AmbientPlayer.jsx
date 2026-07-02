@@ -64,7 +64,7 @@ const EqualizerBars = () => (
 );
 
 /* ─── Main AmbientPlayer component ─── */
-const AmbientPlayer = () => {
+const AmbientPlayer = ({ isOpen }) => {
   const { isPlaying, toggle } = useAmbientMusic();
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
@@ -113,7 +113,9 @@ const AmbientPlayer = () => {
           position: 'fixed',
           bottom: '28px',
           right: '20px',
-          zIndex: 9999,
+          zIndex: isOpen ? 9970 : 9999,
+          opacity: isOpen ? 0 : 1,
+          pointerEvents: isOpen ? 'none' : 'auto',
           width: '48px',
           height: '48px',
           borderRadius: '50%',
@@ -126,7 +128,7 @@ const AmbientPlayer = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+          transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, z-index 0.3s step-end',
           animation: isPlaying ? 'ambient-pulse 2.5s ease-in-out infinite' : 'none',
         }}
         onMouseEnter={(e) => {

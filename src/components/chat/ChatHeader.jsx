@@ -48,6 +48,7 @@ const ChatHeader = ({ onClose, onClear }) => {
                 fontWeight: 600,
                 color: '#D7E2EA',
                 letterSpacing: '0.02em',
+                lineHeight: 1,
               }}
             >
               Avinish AI
@@ -72,6 +73,7 @@ const ChatHeader = ({ onClose, onClear }) => {
                   color: '#28CA40',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
+                  lineHeight: 1,
                 }}
               >
                 Online

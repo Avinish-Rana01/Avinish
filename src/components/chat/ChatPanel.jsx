@@ -129,6 +129,14 @@ const ChatPanel = ({ isOpen, onClose }) => {
             animate="visible"
             exit="hidden"
             transition={{ type: 'tween', ease: [0.25, 0.1, 0.25, 1], duration: 0.35 }}
+            drag={isMobile ? 'y' : false}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.8 }}
+            onDragEnd={(e, info) => {
+              if (isMobile && (info.offset.y > 150 || info.velocity.y > 500)) {
+                onClose();
+              }
+            }}
             style={{
               position: 'fixed',
               background: '#0C0C0C',
@@ -150,6 +158,29 @@ const ChatPanel = ({ isOpen, onClose }) => {
               overflow: 'hidden',
             }}
           >
+            {/* Drag Handle Indicator for Mobile */}
+            {isMobile && (
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingTop: '12px',
+                  background: 'rgba(12, 12, 12, 0.95)',
+                  cursor: 'grab',
+                }}
+              >
+                <div
+                  style={{
+                    width: '36px',
+                    height: '4px',
+                    borderRadius: '2px',
+                    background: 'rgba(215, 226, 234, 0.2)',
+                  }}
+                />
+              </div>
+            )}
+
             {/* Header Area */}
             <ChatHeader onClose={onClose} onClear={clearChat} />
 

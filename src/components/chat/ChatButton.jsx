@@ -50,11 +50,13 @@ const ChatButton = ({ onClick, isOpen }) => {
           position: 'fixed',
           bottom: '90px', // Stacks neatly above AmbientPlayer
           right: '20px',
-          zIndex: 9990,
+          zIndex: isOpen ? 9970 : 9990,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-end',
           pointerEvents: 'none',
+          opacity: isOpen ? 0 : 1,
+          transition: 'opacity 0.3s ease, z-index 0.3s step-end',
         }}
       >
         {/* Welcome Bubble (First Visit Only) */}
@@ -135,7 +137,7 @@ const ChatButton = ({ onClick, isOpen }) => {
           aria-label={isOpen ? 'Close AI Assistant' : 'Open Avinish AI Assistant'}
           className="focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C0C0C]"
           style={{
-            pointerEvents: 'auto',
+            pointerEvents: isOpen ? 'none' : 'auto',
             width: '48px',
             height: '48px',
             borderRadius: '50%',

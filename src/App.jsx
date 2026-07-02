@@ -37,7 +37,7 @@ function App() {
       <ServicesSection />
       <ProjectsSection />
       <ResumeSection />
-      <AmbientPlayer />
+      <AmbientPlayer isOpen={isChatOpen} />
       <DigitalDust />
       <CameraShutter />
 

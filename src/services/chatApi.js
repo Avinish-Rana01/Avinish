@@ -1,4 +1,4 @@
-const API_URL = 'https://portfolio-chatbot-ai.onrender.com/api/chat';
+const API_URL = 'http://localhost:5000/api/chat';
 
 export async function sendChatMessage(message) {
   try {
