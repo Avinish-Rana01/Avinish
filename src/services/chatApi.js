@@ -1,4 +1,4 @@
-const API_URL = 'https://portfolio-chatbot-ai.onrender.com/api/chat/ask';
+const API_URL = 'https://portfolio-chatbot-ai.onrender.com/api/chat';
 
 export async function sendChatMessage(message) {
   try {
