@@ -29,8 +29,8 @@ export default function useAmbientMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Restore volume from prefs or use default
-  const targetVolume = savedPrefs.current?.volume ?? AMBIENT_DEFAULTS.volume;
+  // Use constant volume instead of cached volume (since there is no volume slider UI)
+  const targetVolume = AMBIENT_DEFAULTS.volume;
 
   // Lazy-load: create Audio element only on first play
   const getAudio = useCallback(() => {

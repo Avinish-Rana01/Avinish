@@ -4,7 +4,7 @@ export const AMBIENT_AUDIO_URL = 'https://res.cloudinary.com/dvxemrtys/video/upl
 
 // Playback settings
 export const AMBIENT_DEFAULTS = {
-  volume: 0.40,          // Start at 40%
+  volume: 0.80,          // Boosted to 80%
   fadeDuration: 600,    // Fade in/out duration in ms
   loop: true,
 };
