@@ -1,26 +1,63 @@
-import React, { useState, Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Lenis from 'lenis';
 import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
 import ProjectsSection from './sections/ProjectsSection';
+import PlaygroundSection from './sections/PlaygroundSection';
 import ResumeSection from './sections/ResumeSection';
 import AmbientPlayer from './components/AmbientPlayer';
 import DigitalDust from './components/DigitalDust';
 import CameraShutter from './components/CameraShutter';
 import ChatButton from './components/chat/ChatButton';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+import { useUI } from './context/UIContext';
 
-// Lazy-load ChatPanel component for performance
+// Lazy-load sections and overlays for performance
+const PlaygroundPage = React.lazy(() => import('./sections/PlaygroundPage'));
 const ChatPanel = React.lazy(() => import('./components/chat/ChatPanel'));
 
 function App() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [hasChatOpenedOnce, setHasChatOpenedOnce] = useState(false);
+  const { isChatOpen, hasChatOpenedOnce, toggleChat, closeChat } = useUI();
 
-  const handleChatToggle = () => {
-    setIsChatOpen((prev) => !prev);
-    setHasChatOpenedOnce(true);
-  };
+  // Initialize Lenis smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // Handle URL hash fragments scrolling on page mount
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <div
@@ -31,23 +68,44 @@ function App() {
         overflowX: 'clip',
       }}
     >
-      <HeroSection />
-      <MarqueeSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <ResumeSection />
+      <ErrorBoundary>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <MarqueeSection />
+                <AboutSection />
+                <ServicesSection />
+                <ProjectsSection />
+                <PlaygroundSection />
+                <ResumeSection />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/playground"
+            element={
+              <Suspense fallback={<div className="h-screen w-screen bg-[#0C0C0C]" />}>
+                <PlaygroundPage />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </ErrorBoundary>
       <AmbientPlayer isOpen={isChatOpen} />
       <DigitalDust />
       <CameraShutter />
 
       {/* Floating AI entry button */}
-      <ChatButton onClick={handleChatToggle} isOpen={isChatOpen} />
+      <ChatButton onClick={toggleChat} isOpen={isChatOpen} />
 
       {/* Lazy-loaded chat panel drawer overlay */}
       {hasChatOpenedOnce && (
         <Suspense fallback={null}>
-          <ChatPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+          <ChatPanel isOpen={isChatOpen} onClose={closeChat} />
         </Suspense>
       )}
     </div>

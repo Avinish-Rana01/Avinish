@@ -18,16 +18,8 @@ const HeroSection = () => {
             return (
               <a
                 key={link}
-                href={`/${id}`}
+                href={`#${id}`}
                 id={`nav-${id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const targetElement = document.getElementById(id);
-                  if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                    window.history.pushState(null, '', `/${id}`);
-                  }
-                }}
                 className="text-[0.65rem] sm:text-sm md:text-lg lg:text-[1.4rem] font-medium uppercase tracking-wider transition-opacity duration-200 hover:opacity-70"
                 style={{ color: '#D7E2EA' }}
               >
@@ -44,7 +36,7 @@ const HeroSection = () => {
           className="hero-heading font-black uppercase tracking-tight leading-[0.85] w-full text-[18vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-4 sm:mt-4 md:-mt-5"
           style={{ paddingLeft: '0.01em' }}
         >
-          Hi, i&apos;m
+          Hi, I&apos;m
           <br />
           avinish
         </h1>

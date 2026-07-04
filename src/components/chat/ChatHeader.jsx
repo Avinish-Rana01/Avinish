@@ -155,14 +155,6 @@ const ChatHeader = ({ onClose, onClear }) => {
           <X size={16} strokeWidth={2.2} />
         </button>
       </div>
-
-      {/* Glow animation style */}
-      <style>{`
-        @keyframes ai-glow {
-          from { opacity: 0.6; transform: scale(0.9); }
-          to   { opacity: 1; transform: scale(1.1); }
-        }
-      `}</style>
     </div>
   );
 };

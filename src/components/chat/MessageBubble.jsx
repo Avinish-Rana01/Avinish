@@ -64,8 +64,13 @@ const parseMarkdown = (text) => {
           // Parse Bold
           html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 
-          // Parse Links
-          html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #B600A8; text-decoration: underline; font-weight: 500;">$1</a>');
+          // Parse Links with strict URL scheme validation
+          html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
+            const trimmedUrl = url.trim().toLowerCase();
+            const isSafe = trimmedUrl.startsWith('http://') || trimmedUrl.startsWith('https://') || trimmedUrl.startsWith('mailto:');
+            const targetUrl = isSafe ? url : '#';
+            return `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" style="color: #B600A8; text-decoration: underline; font-weight: 500;">${label}</a>`;
+          });
 
           if (isListItem) {
             const listContent = html.substring(2);
@@ -121,13 +126,6 @@ const MessageBubble = ({ message }) => {
       >
         {parseMarkdown(message.text)}
       </div>
-
-      <style>{`
-        @keyframes ai-bubble-slide {
-          from { opacity: 0; transform: translateY(8px) scale(0.98); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </div>
   );
 };

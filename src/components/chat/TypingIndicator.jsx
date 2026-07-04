@@ -31,31 +31,12 @@ const TypingIndicator = () => {
         animation: 'ai-pulse-text 1.5s ease-in-out infinite alternate',
       }}
     >
-      <div style={{ display: 'flex', gap: '3px' }}>
-        <span className="dot" style={{ animationDelay: '0s' }}></span>
-        <span className="dot" style={{ animationDelay: '0.2s' }}></span>
-        <span className="dot" style={{ animationDelay: '0.4s' }}></span>
+      <div style={{ display: 'flex', gap: '3.5px' }}>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#7621B0] inline-block animate-dot-bounce" style={{ animationDelay: '0s' }}></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#7621B0] inline-block animate-dot-bounce" style={{ animationDelay: '0.2s' }}></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#7621B0] inline-block animate-dot-bounce" style={{ animationDelay: '0.4s' }}></span>
       </div>
       <span>{MESSAGES[index]}</span>
-
-      <style>{`
-        @keyframes ai-pulse-text {
-          from { opacity: 0.6; }
-          to   { opacity: 0.95; }
-        }
-        .dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #7621B0;
-          display: inline-block;
-          animation: dot-bounce 1.4s infinite ease-in-out both;
-        }
-        @keyframes dot-bounce {
-          0%, 80%, 100% { transform: scale(0); }
-          40%           { transform: scale(1.0); }
-        }
-      `}</style>
     </div>
   );
 };

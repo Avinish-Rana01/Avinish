@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 // 7 actual project MP4 recordings
 const VIDEOS = [
@@ -85,20 +86,16 @@ const LazyVideoTile = ({ src }) => {
 
 const MarqueeSection = () => {
   const sectionRef = useRef(null);
-  const [offset, setOffset] = useState(200);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY;
-      const scrollOffset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
-      setOffset(scrollOffset);
-    };
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Moves right on scroll: translates from -150px to 150px
+  const x1 = useTransform(scrollYProgress, [0, 1], [-150, 150]);
+  // Moves left on scroll: translates from 150px to -150px
+  const x2 = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
   return (
     <section
@@ -108,30 +105,30 @@ const MarqueeSection = () => {
       id="marquee"
     >
       {/* Row 1 — moves right on scroll */}
-      <div
+      <motion.div
         className="flex gap-3 mb-3"
         style={{
           willChange: 'transform',
-          transform: `translateX(${offset - 200}px)`,
+          x: x1,
         }}
       >
         {ROW1.map((src, i) => (
           <LazyVideoTile key={`r1-${i}`} src={src} />
         ))}
-      </div>
+      </motion.div>
 
       {/* Row 2 — moves left on scroll */}
-      <div
+      <motion.div
         className="flex gap-3"
         style={{
           willChange: 'transform',
-          transform: `translateX(${-(offset - 200)}px)`,
+          x: x2,
         }}
       >
         {ROW2.map((src, i) => (
           <LazyVideoTile key={`r2-${i}`} src={src} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

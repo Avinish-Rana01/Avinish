@@ -147,7 +147,7 @@ const ProjectsSection = () => {
         className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-12 md:mb-16"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
       >
-        Project
+        Projects
       </h2>
 
       {/* Sticky cards container */}

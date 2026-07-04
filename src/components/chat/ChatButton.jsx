@@ -29,23 +29,22 @@ const ChatButton = ({ onClick, isOpen }) => {
     }
   }, []);
 
-  const handleMouseEnter = useCallback(() => setShowTooltip(true), []);
-  const handleMouseLeave = useCallback(() => setShowTooltip(false), []);
+  const handleMouseEnter = useCallback((e) => {
+    setShowTooltip(true);
+    e.currentTarget.style.transform = 'scale(1.06)';
+    e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.4)';
+  }, []);
+
+  const handleMouseLeave = useCallback((e) => {
+    setShowTooltip(false);
+    e.currentTarget.style.transform = 'scale(1)';
+    e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.25)';
+  }, []);
 
   return (
     <>
-      {/* Dynamic Keyframe Animations */}
-      <style>{`
-        @keyframes ai-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(118, 33, 176, 0.4); }
-          50%      { box-shadow: 0 0 0 8px rgba(118, 33, 176, 0); }
-        }
-        .ai-pulse-active {
-          animation: ai-pulse 2.5s infinite;
-        }
-      `}</style>
-
       <div
+        id="chat-toggle-container"
         style={{
           position: 'fixed',
           bottom: '90px', // Stacks neatly above AmbientPlayer
@@ -157,14 +156,6 @@ const ChatButton = ({ onClick, isOpen }) => {
           onMouseUp={(e) => {
             e.currentTarget.style.transform = 'scale(1.06)';
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.06)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.25)';
-          }}
         >
           {isOpen ? (
             <MessageSquare size={18} color="#FFFFFF" strokeWidth={2.2} />
@@ -173,14 +164,6 @@ const ChatButton = ({ onClick, isOpen }) => {
           )}
         </button>
       </div>
-
-      {/* Helper styles */}
-      <style>{`
-        @keyframes ai-fade-in {
-          from { opacity: 0; transform: scale(0.9); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
     </>
   );
 };

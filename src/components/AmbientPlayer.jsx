@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Music } from 'lucide-react';
-import useAmbientMusic from '../hooks/useAmbientMusic';
+import { useUI } from '../context/UIContext';
 
 /* ─── Toast notification ─── */
 const Toast = ({ message, visible }) => (
@@ -65,7 +65,7 @@ const EqualizerBars = () => (
 
 /* ─── Main AmbientPlayer component ─── */
 const AmbientPlayer = ({ isOpen }) => {
-  const { isPlaying, toggle } = useAmbientMusic();
+  const { isAudioPlaying, toggleAudio } = useUI();
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
@@ -82,24 +82,11 @@ const AmbientPlayer = ({ isOpen }) => {
   }, [toastVisible]);
 
   const handleClick = useCallback(() => {
-    toggle();
-    showToast(isPlaying ? 'Ambient Mode Disabled' : '♪ Ambient Mode Enabled');
-  }, [toggle, isPlaying, showToast]);
-
+    toggleAudio();
+    showToast(isAudioPlaying ? 'Ambient Mode Disabled' : '♪ Ambient Mode Enabled');
+  }, [toggleAudio, isAudioPlaying, showToast]);
   return (
     <>
-      {/* Inject keyframes for equalizer animation */}
-      <style>{`
-        @keyframes ambient-eq {
-          0%   { height: 3px; }
-          100% { height: 14px; }
-        }
-        @keyframes ambient-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(118, 33, 176, 0.35); }
-          50%      { box-shadow: 0 0 0 8px rgba(118, 33, 176, 0); }
-        }
-      `}</style>
-
       {/* Toast */}
       <Toast message={toastMessage} visible={toastVisible} />
 
@@ -107,7 +94,7 @@ const AmbientPlayer = ({ isOpen }) => {
       <button
         onClick={handleClick}
         id="ambient-toggle"
-        aria-label={isPlaying ? 'Pause ambient music' : 'Play ambient music'}
+        aria-label={isAudioPlaying ? 'Pause ambient music' : 'Play ambient music'}
         className="focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C0C0C]"
         style={{
           position: 'fixed',
@@ -129,7 +116,7 @@ const AmbientPlayer = ({ isOpen }) => {
           alignItems: 'center',
           justifyContent: 'center',
           transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, z-index 0.3s step-end',
-          animation: isPlaying ? 'ambient-pulse 2.5s ease-in-out infinite' : 'none',
+          animation: isAudioPlaying ? 'ambient-pulse 2.5s ease-in-out infinite' : 'none',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.08)';
@@ -140,7 +127,7 @@ const AmbientPlayer = ({ isOpen }) => {
           e.currentTarget.style.borderColor = 'rgba(215, 226, 234, 0.2)';
         }}
       >
-        {isPlaying ? (
+        {isAudioPlaying ? (
           <EqualizerBars />
         ) : (
           <Music size={18} color="#D7E2EA" strokeWidth={1.8} />

@@ -46,7 +46,7 @@ const ServicesSection = () => {
         className="font-black uppercase text-center mb-16 sm:mb-20 md:mb-28"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)', color: '#0C0C0C' }}
       >
-        Services
+        Skills
       </h2>
 
       {/* Service items */}

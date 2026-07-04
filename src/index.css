@@ -1,3 +1,5 @@
+@import './styles/animations.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,7 +16,32 @@ body,
 #root {
   background: #0C0C0C;
   font-family: 'Kanit', sans-serif;
-  scroll-behavior: smooth;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis,
+html.lenis-scrolling {
+  scroll-behavior: auto !important;
+}
+
+html.lenis-prevent {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Hero gradient text */
