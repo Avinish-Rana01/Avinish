@@ -51,3 +51,13 @@ html.lenis-prevent {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Hide scrollbars globally to maintain clean aesthetic */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
