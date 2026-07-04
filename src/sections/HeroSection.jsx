@@ -14,13 +14,18 @@ const HeroSection = () => {
       <FadeIn delay={0} y={-20} as="nav">
         <nav className="flex justify-between items-center px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-8">
           {['About', 'Skills', 'Projects', 'Resume', 'Contact'].map((link) => {
-            const id = link.toLowerCase();
+            const id = link === 'Contact' ? 'about' : link.toLowerCase();
             return (
               <a
                 key={link}
                 href={`#${id}`}
-                id={`nav-${id}`}
-                className="text-[0.65rem] sm:text-sm md:text-lg lg:text-[1.4rem] font-medium uppercase tracking-wider transition-opacity duration-200 hover:opacity-70"
+                id={`nav-${link.toLowerCase()}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById(id);
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-[0.65rem] sm:text-sm md:text-lg lg:text-[1.4rem] font-medium uppercase tracking-wider cursor-pointer transition-opacity duration-200 hover:opacity-70"
                 style={{ color: '#D7E2EA' }}
               >
                 {link}
