@@ -160,10 +160,7 @@ const AboutSection = () => {
       <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 z-10 w-full">
         {/* Heading */}
         <FadeIn delay={0} y={40}>
-          <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-          >
+          <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center text-fluid-hero font-display">
             About me
           </h2>
         </FadeIn>
@@ -172,20 +169,13 @@ const AboutSection = () => {
         <div className="flex flex-col items-center gap-16 sm:gap-20 md:gap-24">
           <AnimatedText
             text={ABOUT_TEXT}
-            className="font-medium text-center leading-relaxed max-w-[560px]"
-            style={{
-              color: '#D7E2EA',
-              fontSize: 'clamp(1rem, 2vw, 1.35rem)',
-            }}
+            className="font-medium text-center leading-relaxed max-w-[560px] text-text-primary text-[clamp(1rem,2vw,1.35rem)]"
           />
 
           {/* Certificates */}
           <FadeIn delay={0.2} y={20}>
             <div className="flex flex-col items-center gap-4">
-              <span
-                className="font-light uppercase tracking-[0.25em] text-center"
-                style={{ color: '#D7E2EA', fontSize: 'clamp(0.7rem, 1vw, 0.85rem)', opacity: 0.5 }}
-              >
+              <span className="font-light uppercase tracking-[0.25em] text-center text-text-primary/50 text-[clamp(0.7rem,1vw,0.85rem)]">
                 Certificates
               </span>
               <div className="flex flex-wrap justify-center gap-3">
@@ -196,11 +186,7 @@ const AboutSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     id={`cert-${cert.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="inline-flex items-center gap-2 rounded-full border font-medium uppercase tracking-widest cursor-pointer px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm no-underline transition-colors duration-200 hover:bg-white/5"
-                    style={{
-                      color: '#D7E2EA',
-                      borderColor: 'rgba(215, 226, 234, 0.25)',
-                    }}
+                    className="inline-flex items-center gap-2 rounded-full border border-border-primary font-medium uppercase tracking-widest cursor-pointer px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm no-underline text-text-primary transition-colors duration-200 hover:bg-white/5"
                   >
                     {cert.name}
                     <ExternalLink size={14} strokeWidth={2} />

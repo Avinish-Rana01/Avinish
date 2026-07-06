@@ -6,7 +6,12 @@ const UIContext = createContext();
 export const UIProvider = ({ children }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasChatOpenedOnce, setHasChatOpenedOnce] = useState(false);
+  const [isDustEnabled, setIsDustEnabled] = useState(true);
   const { isPlaying: isAudioPlaying, toggle: toggleAudio } = useAmbientMusic();
+
+  const toggleDust = useCallback(() => {
+    setIsDustEnabled((prev) => !prev);
+  }, []);
 
   const toggleChat = useCallback(() => {
     setIsChatOpen((prev) => !prev);
@@ -26,6 +31,8 @@ export const UIProvider = ({ children }) => {
         closeChat,
         isAudioPlaying,
         toggleAudio,
+        isDustEnabled,
+        toggleDust,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RotateCcw, Trash2, Copy, Download, Sparkles, Music } from 'lucide-react';
+import { useUI } from '../../context/UIContext';
 
 const MobileActionsDrawer = ({
   showMobileMenu,
@@ -20,6 +21,8 @@ const MobileActionsDrawer = ({
   showWordWrap,
   setShowWordWrap
 }) => {
+  const { isDustEnabled, toggleDust } = useUI();
+
   return (
     <AnimatePresence>
       {showMobileMenu && (
@@ -160,6 +163,17 @@ const MobileActionsDrawer = ({
                   className={`w-12 h-6 rounded-full p-1 transition-colors duration-200 cursor-pointer ${showMinimap ? 'bg-[#B600A8]' : 'bg-white/10'}`}
                 >
                   <div className={`w-4 h-4 rounded-full bg-white transition-transform duration-200 ${showMinimap ? 'translate-x-6' : 'translate-x-0'}`} />
+                </button>
+              </div>
+
+              {/* Digital Dust toggle */}
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase tracking-wider text-white">Digital Dust</span>
+                <button
+                  onClick={toggleDust}
+                  className={`w-12 h-6 rounded-full p-1 transition-colors duration-200 cursor-pointer ${isDustEnabled ? 'bg-[#B600A8]' : 'bg-white/10'}`}
+                >
+                  <div className={`w-4 h-4 rounded-full bg-white transition-transform duration-200 ${isDustEnabled ? 'translate-x-6' : 'translate-x-0'}`} />
                 </button>
               </div>
 

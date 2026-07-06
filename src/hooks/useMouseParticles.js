@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-const MAX_PARTICLES = 60;
-const COLOR_PALETTE = ['#7621B0', '#8E2DE2', '#4A00E0', '#B600A8', '#9B51E0'];
+const MAX_PARTICLES = 120;
+const COLOR_PALETTE = ['#7621B0', '#8E2DE2', '#4A00E0', '#B600A8', '#9B51E0', '#D7E2EA'];
 
 export default function useMouseParticles(canvasRef) {
   const particlesRef = useRef([]);
@@ -57,8 +57,8 @@ export default function useMouseParticles(canvasRef) {
 
       const hoverMultiplier = mouseRef.current.isHovering ? 1.5 : 1.0;
       const size = Math.random() * 3 + 2; // 2px to 5px
-      const lifetime = Math.random() * 400 + 500; // 500ms to 900ms
-      const speedScale = isClick ? 1.8 : 0.8;
+      const lifetime = Math.random() * 600 + 700; // 700ms to 1300ms
+      const speedScale = isClick ? 2.5 : 1.2;
 
       // Random color variation around #7621B0
       const color = COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
@@ -71,7 +71,7 @@ export default function useMouseParticles(canvasRef) {
         size,
         type,
         color,
-        alpha: mouseRef.current.isHovering ? 0.35 : 0.20, // 10-20% base, brighter on hover
+        alpha: mouseRef.current.isHovering ? 0.6 : 0.4, // Brighter base alpha
         createdAt: performance.now(),
         lifetime,
       };
@@ -93,7 +93,7 @@ export default function useMouseParticles(canvasRef) {
       const dist = Math.sqrt(dx * dx + dy * dy);
 
       if (dist > 2) {
-        const count = isTablet ? 1 : (Math.random() > 0.5 ? 3 : 2); // 2-3 particles (1 on tablet)
+        const count = isTablet ? 1 : (Math.random() > 0.5 ? 3 : 2); // 2-3 particles per tick
         for (let i = 0; i < count; i++) {
           if (particlesRef.current.length >= MAX_PARTICLES) {
             particlesRef.current.shift(); // Recycle oldest
@@ -114,6 +114,7 @@ export default function useMouseParticles(canvasRef) {
       mouse.y = currentY;
     };
 
+    /* Click Dust Burst Effect (Commented out per user request)
     // Handle click burst
     const handleClick = (e) => {
       const target = e.target;
@@ -122,8 +123,8 @@ export default function useMouseParticles(canvasRef) {
       // Always delay the dust burst to follow the Camera Shutter sparkle
       setTimeout(() => {
         const count = isInteractive 
-          ? (isTablet ? 2 : Math.floor(Math.random() * 3) + 3) // 3-5 particles (2 on tablet)
-          : (isTablet ? 4 : Math.floor(Math.random() * 3) + 6); // 6-8 particles (4 on tablet)
+          ? (isTablet ? 4 : Math.floor(Math.random() * 5) + 6) // 6-10 particles
+          : (isTablet ? 6 : Math.floor(Math.random() * 6) + 10); // 10-15 particles
         for (let i = 0; i < count; i++) {
           if (particlesRef.current.length >= MAX_PARTICLES) {
             particlesRef.current.shift();
@@ -135,9 +136,10 @@ export default function useMouseParticles(canvasRef) {
         }
       }, 180); // sparkle disappears within 180-250ms
     };
+    window.addEventListener('click', handleClick, { passive: true });
+    */
 
     window.addEventListener('mousemove', spawnParticles, { passive: true });
-    window.addEventListener('click', handleClick, { passive: true });
 
     // Drawing helper for custom particle types
     const drawParticle = (p, currentAlpha) => {
@@ -222,7 +224,7 @@ export default function useMouseParticles(canvasRef) {
       motionQuery.removeEventListener('change', handleMotionChange);
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', spawnParticles);
-      window.removeEventListener('click', handleClick);
+      // window.removeEventListener('click', handleClick); // Commented out with the burst effect
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
       }

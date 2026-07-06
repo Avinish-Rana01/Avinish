@@ -43,8 +43,8 @@ const ServicesSection = () => {
     >
       {/* Heading */}
       <h2
-        className="font-black uppercase text-center mb-16 sm:mb-20 md:mb-28"
-        style={{ fontSize: 'clamp(3rem, 12vw, 160px)', color: '#0C0C0C' }}
+        className="hero-heading-light font-black uppercase text-center mb-16 sm:mb-20 md:mb-28"
+        style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
       >
         Skills
       </h2>

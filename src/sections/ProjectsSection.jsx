@@ -12,7 +12,7 @@ const PROJECTS = [
     link: 'https://avigrill.netlify.app/',
     col1img1: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890249/Screenshot_2026-07-01_124448_f0wxvu.png',
     col1img2: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890249/Screenshot_2026-07-01_124522_cfsajk.png',
-    col2img:  'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890249/Screenshot_2026-07-01_124453_yqxpv3.png',
+    col2img: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890249/Screenshot_2026-07-01_124453_yqxpv3.png',
   },
   {
     number: '02',
@@ -30,7 +30,7 @@ const PROJECTS = [
     link: 'https://tomoboshi-admin.netlify.app/#home',
     col1img1: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890603/Screenshot_2026-07-01_125052_nl2nz8.png',
     col1img2: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890604/Screenshot_2026-07-01_125304_xvoat2.png',
-    col2img:  'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890604/Screenshot_2026-07-01_125153_oz0m1y.png',
+    col2img: 'https://res.cloudinary.com/dvxemrtys/image/upload/f_auto,q_auto/v1782890604/Screenshot_2026-07-01_125153_oz0m1y.png',
   },
 ];
 
@@ -50,13 +50,13 @@ const ProjectCard = ({ project, index, totalCards, scrollContainerRef }) => {
   return (
     <div
       ref={cardRef}
-      className="h-[75vh] sm:h-[85vh] flex items-start justify-center"
+      className="h-[40vh] sm:h-[85vh] flex items-start justify-center"
       style={{ position: 'sticky', top: `${64 + index * 20}px` }}
     >
       <motion.div
         className="w-full border border-[#D7E2EA]/40 sm:border-2 sm:border-[#D7E2EA] p-3 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-6"
         style={{
-          background: '#0C0C0C',
+          background: '#000000',
           borderRadius: 'clamp(20px, 5vw, 60px)',
           scale,
           transformOrigin: 'top center',
@@ -139,7 +139,7 @@ const ProjectsSection = () => {
   return (
     <section
       className="rounded-t-[30px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-3 sm:px-8 md:px-10 pt-16 sm:pt-24 md:pt-32 pb-10"
-      style={{ background: '#0C0C0C' }}
+      style={{ background: '#000000' }}
       id="projects"
     >
       {/* Heading */}

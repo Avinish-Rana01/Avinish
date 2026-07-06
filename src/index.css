@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap');
 @import './styles/animations.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: #000000;
+    --color-text-primary: #D7E2EA;
+    --color-text-secondary: #646973;
+    --color-accent-primary: #7621B0;
+    --color-border-primary: rgba(215, 226, 234, 0.4);
+    
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+}
 
 /* Global Reset */
 *, *::before, *::after {
@@ -14,9 +28,12 @@
 html,
 body,
 #root {
-  background: #0C0C0C;
-  font-family: 'Kanit', sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
 }
+
+
 
 /* Lenis smooth scrolling rules */
 html.lenis,
@@ -46,10 +63,19 @@ html.lenis-prevent {
 
 /* Hero gradient text */
 .hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  background: linear-gradient(180deg, var(--color-text-secondary) 0%, var(--color-text-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
+}
+
+.hero-heading-light {
+  background: linear-gradient(180deg, #333 0%, #000000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
 }
 
 /* Hide scrollbars globally to maintain clean aesthetic */
@@ -60,4 +86,70 @@ html.lenis-prevent {
 * {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+@layer utilities {
+  .text-fluid-hero {
+    font-size: clamp(3rem, 10vw, 160px);
+  }
+  .text-fluid-hero-main {
+    font-size: clamp(4rem, 15vw, 220px);
+  }
+  .text-fluid-h2 {
+    font-size: clamp(1.8rem, 8vw, 120px);
+  }
+  .text-fluid-h3 {
+    font-size: clamp(2rem, 8vw, 80px);
+  }
+  .text-fluid-body {
+    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  }
+  .nav-link-hover {
+    position: relative;
+    display: inline-block;
+  }
+  .nav-link-hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+
+
+/* Custom Launch DevLab Button */
+.launch-devlab-btn {
+  background: #B600A8;
+  background: linear-gradient(135deg, #7621B0 0%, #B600A8 100%);
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 0 1em .25em rgba(182, 0, 168, 0.4), inset 0 0 .5em .15em rgba(252, 165, 255, 0.3);
+}
+
+.launch-devlab-btn svg {
+  transform: rotate(30deg);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.launch-devlab-btn span {
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.launch-devlab-btn:hover svg {
+  transform: translateX(5px) rotate(90deg);
+}
+
+.launch-devlab-btn:hover span {
+  transform: translateX(7px);
 }

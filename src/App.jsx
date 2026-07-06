@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import HeroSection from './sections/HeroSection';
@@ -11,10 +11,12 @@ import ResumeSection from './sections/ResumeSection';
 import AmbientPlayer from './components/AmbientPlayer';
 import DigitalDust from './components/DigitalDust';
 import CameraShutter from './components/CameraShutter';
+import CustomCursor from './components/CustomCursor';
 import ChatButton from './components/chat/ChatButton';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { useUI } from './context/UIContext';
+import Loader from './components/Loader';
 
 // Lazy-load sections and overlays for performance
 const PlaygroundPage = React.lazy(() => import('./sections/PlaygroundPage'));
@@ -22,6 +24,15 @@ const ChatPanel = React.lazy(() => import('./components/chat/ChatPanel'));
 
 function App() {
   const { isChatOpen, hasChatOpenedOnce, toggleChat, closeChat } = useUI();
+  const [isLoading, setIsLoading] = useState(true);
+
+  // App initialization loader
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1800); // 1.8 seconds premium loading intro
+    return () => clearTimeout(timer);
+  }, []);
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
@@ -95,6 +106,7 @@ function App() {
           />
         </Routes>
       </ErrorBoundary>
+      <CustomCursor />
       <AmbientPlayer isOpen={isChatOpen} />
       <DigitalDust />
       <CameraShutter />
@@ -108,6 +120,9 @@ function App() {
           <ChatPanel isOpen={isChatOpen} onClose={closeChat} />
         </Suspense>
       )}
+
+      {/* Global Initial Page Loader */}
+      {isLoading && <Loader fullScreen={true} />}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Play, RotateCcw, Trash2, Copy, Download, Maximize2, Minimize2, Sparkles, Music, Settings, ChevronDown, Check } from 'lucide-react';
 import { LANGUAGES } from './constants';
+import { useUI } from '../../context/UIContext';
 
 const WorkspaceHeader = ({
   onBack,
@@ -30,6 +31,8 @@ const WorkspaceHeader = ({
   isAudioPlaying,
   onToggleAudio
 }) => {
+  const { isDustEnabled, toggleDust } = useUI();
+
   return (
     <header className="h-16 flex items-center justify-between px-4 sm:px-6 border-b border-white/10 z-20 select-none shrink-0">
       {/* Left Back navigation & picker */}
@@ -234,6 +237,17 @@ const WorkspaceHeader = ({
                       type="checkbox"
                       checked={showMinimap}
                       onChange={(e) => setShowMinimap(e.target.checked)}
+                      className="accent-[#B600A8]"
+                    />
+                  </label>
+
+                  {/* Digital Dust toggle */}
+                  <label className="flex items-center justify-between text-xs font-semibold text-[#D7E2EA]/85 cursor-pointer">
+                    <span>Digital Dust</span>
+                    <input
+                      type="checkbox"
+                      checked={isDustEnabled}
+                      onChange={toggleDust}
                       className="accent-[#B600A8]"
                     />
                   </label>

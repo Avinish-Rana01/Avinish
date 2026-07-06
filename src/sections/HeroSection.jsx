@@ -6,8 +6,7 @@ import Magnet from '../components/Magnet';
 const HeroSection = () => {
   return (
     <section
-      className="h-screen flex flex-col relative"
-      style={{ overflowX: 'clip' }}
+      className="h-screen flex flex-col relative overflow-x-clip"
       id="hero"
     >
       {/* Navbar */}
@@ -25,8 +24,7 @@ const HeroSection = () => {
                   const el = document.getElementById(id);
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-[0.65rem] sm:text-sm md:text-lg lg:text-[1.4rem] font-medium uppercase tracking-wider cursor-pointer transition-opacity duration-200 hover:opacity-70"
-                style={{ color: '#D7E2EA' }}
+                className="text-[0.65rem] sm:text-sm md:text-lg lg:text-[1.4rem] font-medium uppercase tracking-wider cursor-pointer nav-link-hover text-text-primary transition-opacity duration-300 hover:opacity-100"
               >
                 {link}
               </a>
@@ -38,8 +36,7 @@ const HeroSection = () => {
       {/* Hero Heading */}
       <FadeIn delay={0.15} y={40} className="overflow-hidden">
         <h1
-          className="hero-heading font-black uppercase tracking-tight leading-[0.85] w-full text-[18vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-4 sm:mt-4 md:-mt-5"
-          style={{ paddingLeft: '0.01em' }}
+          className="hero-heading font-black uppercase tracking-tight leading-[0.85] w-full text-fluid-hero-main mt-16 sm:mt-16 md:mt-8 font-display pl-[0.01em]"
         >
           Hi, I&apos;m
           <br />
@@ -73,13 +70,7 @@ const HeroSection = () => {
       <div className="mt-auto flex flex-col sm:flex-row justify-start items-start sm:items-end gap-6 sm:gap-12 px-4 sm:px-6 md:px-10 pb-20 sm:pb-8 md:pb-10 relative z-20 pointer-events-auto">
         {/* Left: tagline */}
         <FadeIn delay={0.35} y={20}>
-          <p
-            className="font-light uppercase tracking-wide leading-snug max-w-[180px] sm:max-w-[220px] md:max-w-[260px]"
-            style={{
-              color: '#D7E2EA',
-              fontSize: 'clamp(0.85rem, 1.4vw, 1.5rem)',
-            }}
-          >
+          <p className="font-light uppercase tracking-wide leading-snug max-w-[180px] sm:max-w-[220px] md:max-w-[260px] text-text-primary text-fluid-body">
             a frontend developer driven by crafting responsive and high-performance web experiences
           </p>
         </FadeIn>

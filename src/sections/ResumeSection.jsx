@@ -85,8 +85,8 @@ const ResumeSection = () => {
             My Background
           </span>
           <h2
-            className="font-black uppercase leading-none tracking-tight animate-fade-in"
-            style={{ fontSize: 'clamp(3rem, 10vw, 120px)', color: '#0C0C0C' }}
+            className="hero-heading-light font-black uppercase leading-none tracking-tight animate-fade-in"
+            style={{ fontSize: 'clamp(3rem, 10vw, 120px)' }}
           >
             Resume
           </h2>
