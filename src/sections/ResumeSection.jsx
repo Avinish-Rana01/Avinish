@@ -1,22 +1,9 @@
 import React from 'react';
 import { Download } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import { GridDecor } from '../components/decorations/SectionGraphics';
 
-// Clean grid geometric background decoration to match premium portfolio aesthetics
-const GridDecor = () => (
-  <svg
-    width="180"
-    height="180"
-    viewBox="0 0 180 180"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="90" cy="90" r="90" fill="rgba(118,33,176,0.03)" />
-    <circle cx="90" cy="90" r="70" stroke="rgba(118,33,176,0.06)" strokeWidth="1" strokeDasharray="4 4" />
-    <path d="M20 90H160" stroke="rgba(118,33,176,0.08)" strokeWidth="1" />
-    <path d="M90 20V160" stroke="rgba(118,33,176,0.08)" strokeWidth="1" />
-  </svg>
-);
+
 
 const ResumeSection = () => {
   // Official Cloudinary PDF link for the resume

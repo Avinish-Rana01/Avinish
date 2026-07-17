@@ -4,33 +4,33 @@ import FadeIn from '../components/FadeIn';
 const SERVICES = [
   {
     number: '01',
-    name: 'React Development',
+    name: 'Frontend & UI Architecture',
     description:
-      'Building scalable, component-based web applications using React.js, Hooks, and modern state management patterns.',
+      'Building highly interactive, SEO-friendly, and animated web applications using React, Next.js, TypeScript, Tailwind CSS, and Framer Motion.',
   },
   {
     number: '02',
-    name: 'UI/UX Design',
+    name: 'Backend Engineering & APIs',
     description:
-      'Designing clean, intuitive, and user-centered interfaces with a strong focus on layout, typography, and visual hierarchy.',
+      'Designing secure and scalable RESTful APIs and server-side logic utilizing Node.js, Express.js, and integrating robust authentication.',
   },
   {
     number: '03',
-    name: 'Responsive Web Design',
+    name: 'Database Management',
     description:
-      'Crafting fully responsive layouts that work seamlessly across mobile, tablet, and desktop devices.',
+      'Architecting data models and managing both NoSQL and relational databases, including MongoDB, MySQL, and Firebase.',
   },
   {
     number: '04',
-    name: 'API Integration',
+    name: 'Cloud Infrastructure & DevOps',
     description:
-      'Connecting frontend interfaces to REST APIs using Fetch and Axios, handling async operations and dynamic data.',
+      'Containerizing applications and managing cloud deployments using Docker, Kubernetes, AWS, Vercel, and Render for high availability.',
   },
   {
     number: '05',
-    name: 'Performance Optimization',
+    name: 'AI & Third-Party Integrations',
     description:
-      'Optimizing web applications for fast load times, smooth rendering, and cross-browser compatibility.',
+      'Enhancing applications with powerful external services like OpenAI, Mapbox, Cloudinary, and Google Apps Script to deliver premium features.',
   },
 ];
 

@@ -5,6 +5,7 @@ const ContactButton = ({ id = 'contact-btn' }) => {
     <a
       id={id}
       href="mailto:ranaavinish72@gmail.com"
+      aria-label="Contact me via email"
       className="inline-block rounded-full font-medium uppercase tracking-widest text-white cursor-pointer px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base no-underline"
       style={{
         background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
@@ -19,4 +20,4 @@ const ContactButton = ({ id = 'contact-btn' }) => {
   );
 };
 
-export default ContactButton;
+export default React.memo(ContactButton);

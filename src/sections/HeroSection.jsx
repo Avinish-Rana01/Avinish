@@ -13,12 +13,12 @@ const HeroSection = () => {
       <FadeIn delay={0} y={-20} as="nav">
         <nav className="flex justify-between items-center px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-8">
           {['About', 'Skills', 'Projects', 'Resume', 'Contact'].map((link) => {
-            const id = link === 'Contact' ? 'about' : link.toLowerCase();
+            const id = link.toLowerCase();
             return (
               <a
                 key={link}
                 href={`#${id}`}
-                id={`nav-${link.toLowerCase()}`}
+                id={`nav-${id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   const el = document.getElementById(id);

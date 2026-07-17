@@ -132,12 +132,14 @@ const ChatPanel = ({ isOpen, onClose }) => {
             drag={isMobile ? 'y' : false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.8 }}
+            data-lenis-prevent="true"
             onDragEnd={(e, info) => {
               if (isMobile && (info.offset.y > 150 || info.velocity.y > 500)) {
                 onClose();
               }
             }}
             style={{
+              overscrollBehavior: 'contain',
               position: 'fixed',
               background: '#0C0C0C',
               borderLeft: isMobile ? 'none' : '1px solid rgba(215, 226, 234, 0.08)',

@@ -41,9 +41,11 @@ const ChatMessages = ({ messages, isThinking, onSendPrompt, isWaiting }) => {
     <div
       ref={containerRef}
       onScroll={handleScroll}
+      data-lenis-prevent="true"
       style={{
         flex: 1,
         overflowY: 'auto',
+        overscrollBehavior: 'contain',
         padding: '16px 20px',
         display: 'flex',
         flexDirection: 'column',

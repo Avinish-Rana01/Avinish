@@ -15,8 +15,10 @@ import CustomCursor from './components/CustomCursor';
 import ChatButton from './components/chat/ChatButton';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
+import LeaveMessage from './components/LeaveMessage/LeaveMessage';
 import { useUI } from './context/UIContext';
 import Loader from './components/Loader';
+import DeveloperAccessGuard from './components/DeveloperInbox/DeveloperAccessGuard';
 
 // Lazy-load sections and overlays for performance
 const PlaygroundPage = React.lazy(() => import('./sections/PlaygroundPage'));
@@ -71,6 +73,7 @@ function App() {
   }, []);
 
   return (
+    <DeveloperAccessGuard>
     <div
       className="w-full"
       style={{
@@ -92,6 +95,7 @@ function App() {
                 <ProjectsSection />
                 <PlaygroundSection />
                 <ResumeSection />
+                <LeaveMessage />
                 <Footer />
               </>
             }
@@ -124,6 +128,7 @@ function App() {
       {/* Global Initial Page Loader */}
       {isLoading && <Loader fullScreen={true} />}
     </div>
+    </DeveloperAccessGuard>
   );
 }
 

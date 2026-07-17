@@ -78,6 +78,20 @@ html.lenis-prevent {
   font-family: var(--font-display);
 }
 
+/* Override browser autofill to preserve dark theme */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #D7E2EA !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.04) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.04) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #D7E2EA;
+}
+
 /* Hide scrollbars globally to maintain clean aesthetic */
 ::-webkit-scrollbar {
   display: none;
