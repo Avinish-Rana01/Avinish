@@ -1,60 +1,75 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Mail, Ghost, MessageSquare, Shield, Zap, Sparkles } from 'lucide-react';
 
 const MODES = [
   {
     key: 'reply',
-    emoji: '👋',
-    title: 'Say Hello',
-    description: "Introduce yourself and I'll personally get back to you.",
+    icon: <Mail className="w-7 h-7 text-white" />,
+    title: 'Start a Conversation',
+    description: "Introduce yourself. I'll personally get back to you as soon as possible.",
+    features: [
+      { icon: <MessageSquare size={14} />, text: 'Personalized reply' },
+      { icon: <Zap size={14} />, text: 'Project inquiries' },
+      { icon: <Sparkles size={14} />, text: 'Direct contact' }
+    ],
+    accent: 'from-[#7621B0] to-[#B600A8]',
+    borderHover: 'hover:border-[#B600A8]/40',
+    shadowHover: 'hover:shadow-[0_0_40px_rgba(182,0,168,0.15)]',
+    glowColor: 'rgba(182,0,168,0.4)',
   },
   {
     key: 'anonymous',
-    emoji: '🎭',
-    title: 'Leave a Thought',
-    description: 'Share your thoughts anonymously.',
+    icon: <Ghost className="w-7 h-7 text-white" />,
+    title: 'Drop a Thought',
+    description: 'Share feedback or critique my work completely anonymously.',
+    features: [
+      { icon: <Shield size={14} />, text: '100% Private' },
+      { icon: <Ghost size={14} />, text: 'No email required' },
+      { icon: <MessageSquare size={14} />, text: 'Honest feedback' }
+    ],
+    accent: 'from-white/20 to-white/5',
+    borderHover: 'hover:border-white/20',
+    shadowHover: 'hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]',
+    glowColor: 'rgba(255,255,255,0.2)',
   },
 ];
 
-const cardVariants = {
-  hidden: (i) => ({
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  },
+  exit: {
     opacity: 0,
-    y: 50,
-    scale: 0.95,
-  }),
-  visible: (i) => ({
+    transition: { duration: 0.3 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 180,
-      damping: 24,
-      delay: i * 0.12,
-    },
-  }),
-  exit: {
-    opacity: 0,
-    y: -20,
-    scale: 0.97,
-    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { type: 'spring', stiffness: 150, damping: 20 }
   },
 };
 
 const ModeSelector = ({ onSelect }) => {
   return (
     <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 w-full max-w-3xl mx-auto"
-      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-4xl mx-auto px-4 sm:px-0"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
-      {MODES.map((mode, i) => (
+      {MODES.map((mode) => (
         <motion.div
           key={mode.key}
-          custom={i}
           variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
           role="button"
           tabIndex={0}
           aria-label={`${mode.title} — ${mode.description}`}
@@ -65,104 +80,62 @@ const ModeSelector = ({ onSelect }) => {
               onSelect(mode.key);
             }
           }}
-          whileHover={{
-            scale: 1.02,
-            y: -3,
-            transition: { type: 'spring', stiffness: 400, damping: 28 },
-          }}
+          whileHover={{ y: -5 }}
           whileTap={{ scale: 0.98 }}
           className={`
             relative group cursor-pointer
-            rounded-2xl p-6 sm:p-7 md:p-8
-            bg-white/[0.03] backdrop-blur-xl
-            border border-white/[0.06]
+            rounded-3xl p-8 sm:p-10
+            bg-[#0F0F0F]
+            border border-white/5
             outline-none
-            focus-visible:ring-2 focus-visible:ring-[#7621B0]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C0C0C]
+            focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0C0C0C]
             overflow-hidden select-none
+            flex flex-col h-full min-h-[320px]
+            transition-all duration-500 ease-out
+            ${mode.borderHover} ${mode.shadowHover}
           `}
-          style={{
-            transition: 'box-shadow 0.5s cubic-bezier(0.25,0.1,0.25,1)',
-          }}
         >
-          {/* Gradient overlay on hover */}
-          <div
-            className="
-              absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
-              pointer-events-none
-            "
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(118,33,176,0.06) 0%, rgba(182,0,168,0.03) 50%, transparent 100%)',
-              transition: 'opacity 0.6s cubic-bezier(0.25,0.1,0.25,1)',
-            }}
+          {/* Background Ambient Glow */}
+          <div 
+            className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 rounded-full opacity-0 group-hover:opacity-20 blur-[60px] pointer-events-none transition-opacity duration-700 ease-out"
+            style={{ background: mode.glowColor }}
           />
 
-          {/* Top glow line */}
-          <div
-            className="
-              absolute top-0 left-[10%] right-[10%] h-[1px]
-              opacity-0 group-hover:opacity-100
-              pointer-events-none
-            "
-            style={{
-              background:
-                'linear-gradient(90deg, transparent, rgba(182,0,168,0.35), transparent)',
-              transition: 'opacity 0.6s cubic-bezier(0.25,0.1,0.25,1)',
-            }}
-          />
+          <div className="relative z-10 flex flex-col h-full">
+            {/* Icon Box */}
+            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${mode.accent} flex items-center justify-center mb-6 shadow-lg border border-white/10`}>
+              {mode.icon}
+            </div>
 
-          {/* Hover shadow — applied via style for smoother GPU transition */}
-          <div
-            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none"
-            style={{
-              boxShadow: '0 8px 40px rgba(118,33,176,0.15), 0 0 60px rgba(182,0,168,0.06)',
-              transition: 'opacity 0.5s cubic-bezier(0.25,0.1,0.25,1)',
-            }}
-          />
-
-          <div className="relative z-10">
-            {/* Emoji */}
-            <motion.span
-              className="text-3xl sm:text-4xl block mb-4"
-              whileHover={{ scale: 1.1, rotate: mode.key === 'reply' ? 12 : -8 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-            >
-              {mode.emoji}
-            </motion.span>
-
-            {/* Title */}
-            <h3
-              className="text-lg sm:text-xl font-semibold text-[#D7E2EA] mb-2 tracking-tight"
-              style={{ fontFamily: "'Syne', sans-serif" }}
-            >
+            {/* Title & Description */}
+            <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-3 tracking-tight font-['Syne',sans-serif]">
               {mode.title}
             </h3>
-
-            {/* Description */}
-            <p
-              className="text-xs sm:text-[13px] text-[#646973] font-light leading-relaxed"
-              style={{ fontFamily: "'Inter', sans-serif" }}
-            >
+            <p className="text-[#646973] text-sm sm:text-base leading-relaxed mb-8 flex-grow">
               {mode.description}
             </p>
 
-            {/* Arrow indicator */}
-            <div
-              className="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#646973] group-hover:text-[#B600A8]/80"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                transition: 'color 0.4s cubic-bezier(0.25,0.1,0.25,1)',
-              }}
-            >
-              <span>Select</span>
-              <motion.span
-                className="inline-block"
-                animate={{ x: 0 }}
-                whileHover={{ x: 3 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                →
-              </motion.span>
+            {/* Features List */}
+            <ul className="flex flex-col gap-3 mb-8">
+              {mode.features.map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-white/50 font-medium">
+                  <span className="opacity-70">{feature.icon}</span>
+                  <span>{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Action Button */}
+            <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+              <span className="text-sm font-semibold tracking-wide text-white group-hover:text-white/80 transition-colors uppercase">
+                Select Option
+              </span>
+              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:translate-x-1 transition-all">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
             </div>
           </div>
         </motion.div>

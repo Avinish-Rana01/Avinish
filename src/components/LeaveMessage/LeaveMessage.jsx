@@ -27,7 +27,7 @@ const LeaveMessage = () => {
   return (
     <section
       id="contact"
-      className="relative w-full px-4 sm:px-8 md:px-10 overflow-hidden flex flex-col justify-center"
+      className="relative w-full px-4 sm:px-8 md:px-10 py-16 sm:py-20 md:py-24 overflow-hidden flex flex-col justify-center"
       style={{
         background: '#0C0C0C',
         minHeight: 'calc(100svh - 5rem)',

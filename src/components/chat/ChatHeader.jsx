@@ -22,20 +22,20 @@ const ChatHeader = ({ onClose, onClear }) => {
     >
       {/* Title + Avatar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        {/* Profile Sparkle Avatar */}
-        <div
-          style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #7621B0 0%, #B600A8 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(118, 33, 176, 0.2)',
-          }}
-        >
-          <Sparkles size={16} color="#FFFFFF" strokeWidth={2.2} />
+        {/* Profile AI Avatar */}
+        <div style={{ position: 'relative', width: '40px', height: '40px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+          <img 
+            src="https://res.cloudinary.com/dvxemrtys/image/upload/v1784312337/Avinish-portfolio-AI-image_ymz1nt.png" 
+            alt="Avinish AI Avatar" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.5))',
+              transform: 'scale(1.6) translateY(2px)',
+            }}
+            draggable={false}
+          />
         </div>
 
         {/* Text Details */}

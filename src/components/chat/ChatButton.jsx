@@ -32,13 +32,20 @@ const ChatButton = ({ onClick, isOpen }) => {
   const handleMouseEnter = useCallback((e) => {
     setShowTooltip(true);
     e.currentTarget.style.transform = 'scale(1.06)';
-    e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.4)';
+    // We only want a shadow if it's the circular button (isOpen or has background)
+    if (e.currentTarget.style.background !== 'transparent') {
+      e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.4)';
+    }
   }, []);
 
   const handleMouseLeave = useCallback((e) => {
     setShowTooltip(false);
     e.currentTarget.style.transform = 'scale(1)';
-    e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.25)';
+    if (e.currentTarget.style.background !== 'transparent') {
+      e.currentTarget.style.boxShadow = '0 8px 32px rgba(181, 1, 167, 0.25)';
+    } else {
+      e.currentTarget.style.boxShadow = 'none';
+    }
   }, []);
 
   return (
@@ -128,7 +135,6 @@ const ChatButton = ({ onClick, isOpen }) => {
           </div>
         )}
 
-        {/* Floating Action Button */}
         <button
           onClick={onClick}
           onMouseEnter={handleMouseEnter}
@@ -139,16 +145,17 @@ const ChatButton = ({ onClick, isOpen }) => {
             pointerEvents: isOpen ? 'none' : 'auto',
             width: '48px',
             height: '48px',
-            borderRadius: '50%',
+            borderRadius: isOpen ? '50%' : '0',
             border: 'none',
-            background: 'linear-gradient(135deg, #7621B0 0%, #B600A8 100%)',
-            boxShadow: '0 8px 32px rgba(181, 1, 167, 0.25)',
+            background: isOpen ? 'linear-gradient(135deg, #7621B0 0%, #B600A8 100%)' : 'transparent',
+            boxShadow: isOpen ? '0 8px 32px rgba(181, 1, 167, 0.25)' : 'none',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            animation: 'ai-pulse 15s infinite', // Periodic subtle pulse
+            transition: 'transform 0.3s ease',
+            animation: isOpen ? 'ai-pulse 15s infinite' : 'none',
+            position: 'relative'
           }}
           onMouseDown={(e) => {
             e.currentTarget.style.transform = 'scale(0.95)';
@@ -160,7 +167,23 @@ const ChatButton = ({ onClick, isOpen }) => {
           {isOpen ? (
             <MessageSquare size={18} color="#FFFFFF" strokeWidth={2.2} />
           ) : (
-            <Sparkles size={18} color="#FFFFFF" strokeWidth={2.2} />
+            <>
+              {/* Floating PNG Avatar without background */}
+              <div style={{ position: 'relative', width: '110%', height: '110%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                <img 
+                  src="https://res.cloudinary.com/dvxemrtys/image/upload/v1784312337/Avinish-portfolio-AI-image_ymz1nt.png" 
+                  alt="Avinish AI Avatar" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))',
+                    transform: 'scale(1.7) translateY(2px)',
+                  }}
+                  draggable={false}
+                />
+              </div>
+            </>
           )}
         </button>
       </div>

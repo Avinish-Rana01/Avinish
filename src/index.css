@@ -104,10 +104,10 @@ textarea:-webkit-autofill:focus {
 
 @layer utilities {
   .text-fluid-hero {
-    font-size: clamp(3rem, 10vw, 160px);
+    font-size: clamp(2.5rem, 8vw, 160px);
   }
   .text-fluid-hero-main {
-    font-size: clamp(4rem, 15vw, 220px);
+    font-size: clamp(2.5rem, 13vw, 220px);
   }
   .text-fluid-h2 {
     font-size: clamp(1.8rem, 8vw, 120px);
